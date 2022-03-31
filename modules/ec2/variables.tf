@@ -17,3 +17,8 @@ variable "sg_pub_id" {
 variable "sg_priv_id" {
   type = any
 }
+
+variable "personal_access_token" {
+  description = "personal token of the runner repo"
+  default = ""
+}
