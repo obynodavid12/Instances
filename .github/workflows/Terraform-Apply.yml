@@ -13,6 +13,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
       AWS_SECRET_KEY_ACCESS_KEY: ${{ secrets.AWS_SECRET_ID }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -51,7 +52,7 @@ jobs:
       # On push to master, build or change infrastructure according to Terraform configuration files
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply -auto-approve -var 'personal_access_token=${ secrets.PERSONAL_ACCESS_TOKEN }'
+      run: terraform apply -auto-approve
     
         #- name: Terraform destroy
         #if: github.ref == 'refs/heads/master' && github.event_name == 'push'
