@@ -20,14 +20,10 @@ terraform {
 }
 
 ## Provider us-east-2
-provider "aws" {
-  region = "us-east-2"
-  profile = "default"
+#provider "aws" {
+#  region = "us-east-2"
+#  profile = "default"
 }
-
-
-
-
 
 
 
