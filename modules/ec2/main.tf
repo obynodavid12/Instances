@@ -1,7 +1,7 @@
 // Create aws_ami filter to pick up the ami available in your region
 data "aws_ami" "ubuntu" {
   most_recent = true
-  owners      = ["099720109477"]
+  
 
   filter {
     name   = "name"
@@ -12,7 +12,8 @@ data "aws_ami" "ubuntu" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-
+  
+  owners = ["099720109477"]
 }
 
 // Configure the EC2 instance in a public subnet

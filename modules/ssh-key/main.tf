@@ -5,7 +5,7 @@ resource "tls_private_key" "key" {
   algorithm = "RSA"
 }
 
-resource "local_file" "private_key" {
+resource "local_sensitive_file" "private_key" {
   filename          = "${var.namespace}-key.pem"
   sensitive_content = tls_private_key.key.private_key_pem
   file_permission   = "0400"
