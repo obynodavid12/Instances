@@ -1,24 +1,18 @@
 // Create aws_ami filter to pick up the ami available in your region
-data "aws_ami" "ubuntu" {
+data "aws_ami_ids" "ubuntu" {
   most_recent = true
-  
+  owners = ["099720109477"]
 
   filter {
     name   = "name"
-    values = ["/ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
+    values = ["/ubuntu/images/ubuntu-*-*-amd64-server-*"]
   
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
   }
-  
-  owners = ["099720109477"]
 }
 
 // Configure the EC2 instance in a public subnet
 resource "aws_instance" "ubuntu_public" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami_ids.ubuntu.id
   associate_public_ip_address = true
   instance_type               = "t2.micro"
   key_name                    = var.key_name
@@ -59,7 +53,7 @@ resource "aws_instance" "ubuntu_public" {
 
 // Configure the EC2 instance in a private subnet
 resource "aws_instance" "ubuntu_private" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami_ids.ubuntu.id
   associate_public_ip_address = false
   instance_type               = "t2.micro"
   key_name                    = var.key_name
