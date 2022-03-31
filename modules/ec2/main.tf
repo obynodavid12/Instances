@@ -1,17 +1,26 @@
 // Create aws_ami filter to pick up the ami available in your region
-data "aws_ami_ids" "ubuntu" {
-  owners = ["099720109477"]
+  
+data "aws_ami" "ubuntu" {
+  most_recent = true
 
   filter {
     name   = "name"
-    values = ["/ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
 }
+
+
 
 // Configure the EC2 instance in a public subnet
 resource "aws_instance" "ubuntu_public" {
-  ami                         = data.aws_ami_ids.ubuntu.id
+  ami                         = data.aws_ami.ubuntu.id
   associate_public_ip_address = true
   instance_type               = "t2.micro"
   key_name                    = var.key_name
@@ -19,7 +28,7 @@ resource "aws_instance" "ubuntu_public" {
   vpc_security_group_ids      = [var.sg_pub_id]
 
   tags = {
-    "Name" = "${var.namespace}-UBUNTU-PUBLIC"
+    Name = "${var.namespace}-UBUNTU-PUBLIC"
   }
 
   # Copies the ssh key file to home dir
@@ -52,7 +61,7 @@ resource "aws_instance" "ubuntu_public" {
 
 // Configure the EC2 instance in a private subnet
 resource "aws_instance" "ubuntu_private" {
-  ami                         = data.aws_ami_ids.ubuntu.id
+  ami                         = data.aws_ami.ubuntu.id
   associate_public_ip_address = false
   instance_type               = "t2.micro"
   key_name                    = var.key_name
@@ -60,7 +69,7 @@ resource "aws_instance" "ubuntu_private" {
   vpc_security_group_ids      = [var.sg_priv_id]
 
   tags = {
-    "Name" = "${var.namespace}-UBUNTU-PRIVATE"
+    Name = "${var.namespace}-UBUNTU-PRIVATE"
   }
 
 }
