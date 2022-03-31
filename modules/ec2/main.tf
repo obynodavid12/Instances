@@ -1,6 +1,5 @@
 // Create aws_ami filter to pick up the ami available in your region
 data "aws_ami_ids" "ubuntu" {
-  most_recent = true
   owners = ["099720109477"]
 
   filter {
