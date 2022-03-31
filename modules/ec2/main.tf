@@ -19,7 +19,7 @@ data "aws_ami" "ubuntu" {
 
 
 // Configure the EC2 instance in a public subnet
-resource "aws_instance" "ubuntu_public" {
+resource "aws_instance" "bastion_host" {
   ami                         = data.aws_ami.ubuntu.id
   associate_public_ip_address = true
   instance_type               = "t2.micro"
@@ -28,7 +28,7 @@ resource "aws_instance" "ubuntu_public" {
   vpc_security_group_ids      = [var.sg_pub_id]
 
   tags = {
-    Name = "${var.namespace}-UBUNTU-PUBLIC"
+    Name = "${var.namespace}-BASTION-HOST"
   }
 
   # Copies the ssh key file to home dir
@@ -60,7 +60,7 @@ resource "aws_instance" "ubuntu_public" {
 }
 
 // Configure the EC2 instance in a private subnet
-resource "aws_instance" "ubuntu_private" {
+resource "aws_instance" "selfhosted_runner" {
   ami                         = data.aws_ami.ubuntu.id
   associate_public_ip_address = false
   instance_type               = "t2.micro"
@@ -69,7 +69,7 @@ resource "aws_instance" "ubuntu_private" {
   vpc_security_group_ids      = [var.sg_priv_id]
 
   tags = {
-    Name = "${var.namespace}-UBUNTU-PRIVATE"
+    Name = "${var.namespace}-SELFHOSTED-RUNNER"
   }
 
 }
