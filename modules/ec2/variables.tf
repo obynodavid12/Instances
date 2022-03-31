@@ -19,6 +19,7 @@ variable "sg_priv_id" {
 }
 
 variable "personal_access_token" {
+  type = string
   description = "personal token of the runner repo"
   default = ""
 }
