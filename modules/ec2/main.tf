@@ -85,12 +85,12 @@ resource "aws_instance" "selfhosted_runner" {
                 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
                 sudo -i u ubuntu bash << EOF
                 /home/ubuntu/actions-runner/config.sh --url https://github.com/obynodavid12/Instances/ --token \$runner_token --name "DEV-TEST-SELFHOSTED-RUNNER" --unattended
-                EOF
                 echo "Configured"
                 sudo ./svc.sh install
                 echo "Installed"
                 sudo ./svc.sh start
                 echo "Started"
+                EOF
  
   tags = {
     Name = "${var.namespace}-SELFHOSTED-RUNNER"
