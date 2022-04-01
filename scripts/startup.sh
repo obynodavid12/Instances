@@ -11,7 +11,7 @@ cd ~/actions-runner
 curl -o actions-runner-linux-x64-2.289.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.289.1/actions-runner-linux-x64-2.289.1.tar.gz
 tar xzf ./actions-runner-linux-x64-2.289.1.tar.gz
 rm ~/actions-runner/actions-runner-linux-x64-2.289.1.tar.gz
-~/actions-runner/config.sh --url https://github.com/obynodavid12/Instances/ --token \$runner_token --name "SELFHOSTED-RUNNER" --unattended
+~/actions-runner/config.sh --url https://github.com/obynodavid12/Instances/ --token \$runner_token --name "DEV-TEST-SELFHOSTED-RUNNER" --unattended
 ~/actions-runner/run.sh
 EOF
 cd /home/ubuntu
