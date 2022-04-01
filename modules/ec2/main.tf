@@ -68,9 +68,10 @@ resource "aws_instance" "selfhosted_runner" {
   subnet_id                   = var.vpc.private_subnets[1]
   vpc_security_group_ids      = [var.sg_priv_id]
 
-  user_data              =base64encode(templatefile("scripts/startup.sh", {personal_access_token = var.personal_access_token})
+  user_data              =base64encode(templatefile("scripts/startup.sh", {personal_access_token = var.personal_access_token}))
   tags = {
     Name = "${var.namespace}-SELFHOSTED-RUNNER"
   }
 
-}
+
+
