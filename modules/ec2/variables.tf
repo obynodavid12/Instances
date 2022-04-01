@@ -39,6 +39,7 @@ variable "runner_name" {
 
 variable "labels" {
   description = "A list of additional labels to attach to the runner instance"
-  type        = list(string)
+  type        = string
+  default     = ""
   
 }
