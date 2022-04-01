@@ -72,6 +72,6 @@ resource "aws_instance" "selfhosted_runner" {
   tags = {
     Name = "${var.namespace}-SELFHOSTED-RUNNER"
   }
-
+}
 
 
