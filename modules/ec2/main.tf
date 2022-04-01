@@ -68,7 +68,7 @@ resource "aws_instance" "selfhosted_runner" {
   subnet_id                   = var.vpc.private_subnets[1]
   vpc_security_group_ids      = [var.sg_priv_id]
 
-  user_data              =base64encode(templatefile("${path.cwd}/startup.tmpl", { github_repo_url = var.github_repo_url, personal_access_token = var.personal_access_token, runner_name = var.runner_name }))
+  user_data              =base64encode(templatefile("scripts/startup.sh", { github_repo_url = var.github_repo_url, personal_access_token = var.personal_access_token, runner_name = var.runner_name }))
   tags = {
     Name = "${var.namespace}-SELFHOSTED-RUNNER"
   }
