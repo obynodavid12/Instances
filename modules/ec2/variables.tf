@@ -19,12 +19,6 @@ variable "sg_priv_id" {
 }
 
 
-variable "github_repo_url" {
-  description = "The GitHub Repo URL for which the GitHub Runner to be registered with"
-  type        = string
-  default     = ""
-}
-
 variable "personal_access_token" {
   description = "The GitHub Repo Pat Token that would be used by the GitHub Runner to authenticate with the GitHub Repo"
   type        = string
