@@ -31,15 +31,3 @@ variable "personal_access_token" {
   default     = ""
 }
 
-variable "runner_name" {
-  description = "The name to give to the GitHub Runner so you can easily identify it"
-  type        = string
-  default     = ""
-}
-
-variable "labels" {
-  description = "A list of additional labels to attach to the runner instance"
-  type        = list(string)
-  
-  
-}
