@@ -20,6 +20,6 @@ variable "sg_priv_id" {
 
 variable "personal_access_token" {
   type = string
-  description = "personal token of the runner repo"
-  default = ""
+  description = "The GitHub Personal token that would be used by the GitHub Runner to authenticate with GitHub Repo"
+  
 }
