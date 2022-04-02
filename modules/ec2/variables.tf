@@ -25,4 +25,9 @@ variable "personal_access_token" {
   default     = ""
 }
 
-
+variable "GITHUBTOKEN" {}
+variable "GITHUBORG" {}
+variable "REPO" {}
+variable "AWS_DEFAULT_REGION" {}
+variable "AWS_SECRET_ACCESS_KEY" {}
+variable "AWS_ACCESS_KEY_ID" {}
