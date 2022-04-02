@@ -1,21 +1,30 @@
 #!/bin/bash
-set -e
+sudo apt update -y
+sudo apt install git -y
+wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+chmod +x ./jq
+sudo cp jq /usr/bin
+curl --request POST 'https://api.github.com/repos/obynodavid12/Instances/actions/runners/registration-token' --header "Authorization: token ${personal_access_token}" > output.txt
+runner_token=\$(jq -r '.token' output.txt)
 
-mkdir actions-runner && cd actions-runner
-curl -O -L https://github.com/actions/runner/releases/download/v2.298.2/actions-runner-linux-x64-2.298.2.tar.gz
-tar xzf ./actions-runner-linux-x64-2.298.2.tar.gz
-./bin/installdependencies.sh
-mkdir /_work
+export RUNNER_ALLOW_RUNASROOT="1"
 
-AUTH_HEADER="Authorization: token ${personal_access_token}"
-API_VERSION=v3
-API_HEADER="Accept: application/vnd.github.${API_VERSION}+json"
-_FULL_URL="https://api.github.com/repos/${ORG}/${REPO}/actions/runners/registration-token"
-RUNNER_TOKEN="$(curl -XPOST -fsSL \
-  -H "${AUTH_HEADER}" \
-  -H "${API_HEADER}" \
-  "${_FULL_URL}" \
-| jq -r '.token')"
+sudo -u ubuntu mkdir /home/ubuntu/actions-runner 
+sudo -u ubuntu cd /home/ubuntu/actions-runner
 
-./config.sh --url https://github.com/${ORG}/${REPO} --token "${RUNNER_TOKEN}" --name "aws-runner" --work _work --labels aws-runner --unattended --replace
-./bin/runsvc.sh
+sudo -u ubuntu curl -O /home/ubuntu/actions-runner/actions-runner-linux-x64-2.289.2.tar.gz -L https://github.com/actions/runner/releases/download/v2.298.2/actions-runner-linux-x64-2.298.2.tar.gz
+
+sudo -u ubuntu tar xzf /home/ubuntu/actions-runner/actions-runner-linux-x64-2.289.2.tar.gz -C /home/ubuntu/actions-runner
+
+sudo -u ubuntu EC2_INSTANCE_ID=`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id` bash -c 'cd /home/ubuntu/actions-runner/;./config.sh --url "https://github.com/obynodavid12/Instances/ --token \$runner_token --name "DEV-TEST-SELFHOSTED-RUNNER" --runasservice --unattended --replace
+
+echo "Configured"
+
+sudo ./svc.sh install
+
+echo "Installed"
+
+sudo ./svc.sh start
+
+echo "Started"
+
