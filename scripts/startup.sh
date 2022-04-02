@@ -2,6 +2,17 @@
 
 set -e
 
+flags_found=false
+
+while getopts t:o: option
+do
+case "${option}"
+in
+t) GITHUBTOKEN=${OPTARG};;
+o) GITHUBORG=${OPTARG};;
+esac
+done
+
 export RUNNER_ALLOW_RUNASROOT="1"
 
 mkdir actions-runner && cd actions-runner
