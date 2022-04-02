@@ -20,8 +20,8 @@ variable "sg_priv_id" {
 
 
 variable "personal_access_token" {
-  description = "The GitHub Repo Pat Token that would be used by the GitHub Runner to authenticate with the GitHub Repo"
+  description = "personal token to authenticate with the GitHub Repo"
   type        = string
-  default     = ""
+  default     = "AQSVU6FXHEHMN7EGJJZMFG3CI6RZQ"
 }
 
