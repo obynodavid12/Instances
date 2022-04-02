@@ -34,4 +34,5 @@ variable "runner_scope" {
 variable "runner_name" {
  description = "runner name"
  type        = string
- default     = "" 
+ default     = ""
+}
