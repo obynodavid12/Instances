@@ -13,5 +13,5 @@ variable "region" {
 variable "personal_access_token" {
   description  = github personal access token 
   type  = string
-  default  = ""
+  
 } 
