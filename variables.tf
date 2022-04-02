@@ -10,15 +10,4 @@ variable "region" {
   type        = string
 }
 
-variable "option" {}
 
-
-variable "github_runner_token" {
-
-}
-
-variable "github_runner_org" {
-
-}
-
-variable "optarg" {}
