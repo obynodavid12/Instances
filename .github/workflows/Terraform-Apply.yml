@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
-      AWS_SECRET_KEY_ACCESS_KEY: ${{ secrets.AWS_SECRET_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ID }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  
 
@@ -33,8 +33,15 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      id: init 
-      run: terraform init
+      run: | 
+        terraform init
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ID }}
+    
+    - name: Terraform validate
+      run: |
+        terraform validate      
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
@@ -51,10 +58,13 @@ jobs:
       
       # On push to master, build or change infrastructure according to Terraform configuration files
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply -auto-approve
-    
-    - name: Terraform destroy
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      id: destroy
-      run: terraform destroy -auto-approve
+      run: |
+        terraform apply -auto-approve -var 'personal_access_token=${ secrets.PERSONAL_ACCESS_TOKEN }'
+      env:
+        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ID }}
+
+        # - name: Terraform destroy
+        #if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        #id: destroy
+        #run: terraform destroy -auto-approve

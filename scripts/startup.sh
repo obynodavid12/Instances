@@ -6,16 +6,15 @@ chmod +x ./jq
 sudo cp jq /usr/bin
 curl --request POST 'https://api.github.com/repos/obynodavid12/Instances/actions/runners/registration-token' --header "Authorization: token ${personal_access_token}" > output.txt
 runner_token=\$(jq -r '.token' output.txt)
-mkdir ~/actions-runner
-cd ~/actions-runner
-curl -o actions-runner-linux-x64-2.289.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.289.1/actions-runner-linux-x64-2.289.1.tar.gz
-tar xzf ./actions-runner-linux-x64-2.289.1.tar.gz
-rm ~/actions-runner/actions-runner-linux-x64-2.289.1.tar.gz
+mkdir /home/ubuntu/actions-runner
+cd /home/ubuntu/actions-runner
+curl -o actions-runner-linux-x64-2.289.2.tar.gz -L https://github.com/actions/runner/releases/download/v2.289.2/actions-runner-linux-x64-2.289.2.tar.gz
+tar xzf ./actions-runner-linux-x64-2.289.2.tar.gz
+rm /home/ubuntu/actions-runner/actions-runner-linux-x64-2.289.2.tar.gz
 ~/actions-runner/config.sh --url https://github.com/obynodavid12/Instances/ --token \$runner_token --name "DEV-TEST-SELFHOSTED-RUNNER" --unattended
-~/actions-runner/run.sh
+home/ubuntu/actions-runner/run.sh
 EOF
 cd /home/ubuntu
 chmod +x user-data.sh
 bin/su -c "./user-data.sh" - ubuntu | tee /home/ubuntu/user-data.log
-sudo ./svc install
-sudo ./svc start
+
