@@ -25,7 +25,5 @@ variable "personal_access_token" {
   default     = ""
 }
 
-variable "GITHUBTOKEN" {}
-variable "GITHUBORG" {}
 
 
