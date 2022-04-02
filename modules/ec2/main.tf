@@ -68,7 +68,7 @@ resource "aws_instance" "selfhosted_runner" {
   subnet_id                   = var.vpc.private_subnets[1]
   vpc_security_group_ids      = [var.sg_priv_id]
 
-  user_data   =templatefile("scripts/startup.sh", {personal_access_token = var.personal_access_token, option = var.option, github_runner_token = var.github_runner_token, github_runner_org = var.github_runner_org, optarg = var.optarg})
+  user_data   =templatefile("scripts/startup.sh", {personal_access_token = var.personal_access_token, option = var.option, github_runner_token = var.github_runner_token, github_runner_org = var.github_runner_org, OPTARG = var.optarg})
                 
  
   tags = {
