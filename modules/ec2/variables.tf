@@ -27,7 +27,11 @@ variable "personal_access_token" {
 
 variable "runner_scope" {
   description = "runner scope"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 
+variable "runner_name" {
+ description = "runner name"
+ type        = string
+ default     = "" 
