@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 set -e
 
@@ -26,7 +26,7 @@ set -e
 #
 
 runner_scope=${1}
-svc_user=${2:-$USER}
+
 
 echo "Configuring runner @ ${runner_scope}"
 sudo echo
