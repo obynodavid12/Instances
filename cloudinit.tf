@@ -13,7 +13,7 @@ data "template_cloudinit_config" "cloudinit-example" {
   part {
     content_type = "text/x-shellscript"
     content      = template_file("scripts/runner.sh", {
-    RUNNER_CFG_PAT = var.PERSONAL_ACCESS_TOKEN
+    RUNNER_CFG_PAT = var.personal_access_token
     })
   }
 }
