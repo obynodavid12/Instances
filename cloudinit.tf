@@ -6,7 +6,7 @@ data "template_cloudinit_config" "cloudinit-example" {
     filename     = "init.cfg"
     content_type = "text/cloud-config"
     content      = template_file("scripts/init.cfg", {
-      REGION = var.AWS_REGION
+      REGION = var.aws_region
     })
   }
 
