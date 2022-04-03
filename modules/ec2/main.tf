@@ -68,7 +68,8 @@ resource "aws_instance" "selfhosted_runner" {
   subnet_id                   = var.vpc.private_subnets[1]
   vpc_security_group_ids      = [var.sg_priv_id]
 
-  user_data   ="#!/bin/bash\ncurl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s obynodavid12/Instances"
+  # user data
+  user_data = data.template_cloudinit_config.cloudinit-example.rendered
                 
  
   tags = {
