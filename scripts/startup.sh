@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 #/bin/bash
+=======
+#!/bin/bash
+sudo apt update -y
+sudo apt install git -y
+wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+chmod +x ./jq
+sudo cp jq /usr/bin
+curl --request POST 'https://api.github.com/repos/obynodavid12/Instances/actions/runners/registration-token' --header "Authorization: token ${personal_access_token}" > output.txt
+echo "runner_token=\$(jq -r '.token' output.txt)"
+>>>>>>> 50dee0c2770020754497bf69c1487fbf7c3a184f
 
 set -e
 
