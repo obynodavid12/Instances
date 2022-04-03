@@ -10,5 +10,6 @@ variable "region" {
   type        = string
 }
 
-variable "personal_access_token"
+variable "personal_access_token" {
   default = ""
+}
