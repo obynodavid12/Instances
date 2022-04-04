@@ -17,11 +17,11 @@ set -e
 #      scope required  repo (:owner/:repo) or org (:organization)
 #      name  optional  defaults to hostname
 #      user  optional  user svc will run as. defaults to current
-# 
+#
 # Notes:
 # PATS over envvars are more secure
 # Should be used on VMs and not containers
-# Works on OSX and Linux 
+# Works on OSX and Linux
 # Assumes x64 arch
 #
 
@@ -51,9 +51,9 @@ which curl || fatal "curl required.  Please install in PATH with apt-get, brew, 
 which jq || fatal "jq required.  Please install in PATH with apt-get, brew, etc"
 
 # bail early if there's already a runner there. also sudo early
-if [ -d ./runner ]; then 
+if [ -d ./runner ]; then
     fatal "Runner already exists.  Use a different directory or delete ./runner"
-fi 
+fi
 
 sudo -u ${svc_user} mkdir runner
 
@@ -74,7 +74,7 @@ fi
 
 export RUNNER_TOKEN=$(curl -s -X POST ${base_api_url}/${runner_scope}/actions/runners/registration-token -H "accept: application/vnd.github.everest-preview+json" -H "authorization: token ${RUNNER_CFG_PAT}" | jq -r '.token')
 
-if [ -z "$RUNNER_TOKEN" ]; then fatal "Failed to get a token"; fi 
+if [ -z "$RUNNER_TOKEN" ]; then fatal "Failed to get a token"; fi
 
 #---------------------------------------
 # Download latest released and extract
@@ -127,9 +127,10 @@ sudo -E -u ${svc_user} ./config.sh --unattended --url $runner_url --token $RUNNE
 echo
 echo "Configuring as a service ..."
 prefix=""
-if [ "${runner_plat}" == "linux" ]; then 
+if [ "${runner_plat}" == "linux" ]; then
     prefix="sudo "
-fi 
+fi
 
 ${prefix}./svc.sh install ${svc_user}
 ${prefix}./svc.sh start
+

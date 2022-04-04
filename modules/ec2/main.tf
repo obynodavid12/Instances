@@ -59,25 +59,6 @@ resource "aws_instance" "bastion_host" {
 
 }
 
-data "template_cloudinit_config" "server-config" {
-  gzip          = false
-  base64_encode = false
-
-  part {
-    filename     = "init.cfg"
-    content_type = "text/cloud-config"
-    content      = templatefile("scripts/init.cfg", {
-      region = var.aws_region
-    })
-  }
-
-  part {
-    content_type = "text/x-shellscript"
-    content      = templatefile("scripts/runner.sh", {
-    personal_access_token = var.personal_access_token
-    })
-  }
-}
 
 // Configure the EC2 instance in a private subnet
 resource "aws_instance" "selfhosted_runner" {
@@ -88,9 +69,24 @@ resource "aws_instance" "selfhosted_runner" {
   subnet_id                   = var.vpc.private_subnets[1]
   vpc_security_group_ids      = [var.sg_priv_id]
 
-  
-  user_data = data.template_cloudinit_config.server-config.rendered
-                
+  provisioner "file" {
+    source      = "script.sh"
+    destination = "/tmp/script.sh"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/script.sh",
+      "sudo sed -i -e 's/\r$//' /tmp/script.sh",  # Remove the spurious CR characters.
+      "sudo /tmp/script.sh",
+    ]
+  }
+  connection {
+    host        = coalesce(self.private_ip)
+    type        = "ssh"
+    user        = ubuntu
+    private_key = file("${var.key_name}.pem")  
+  }
+              
  
   tags = {
     Name = "${var.namespace}-SELFHOSTED-RUNNER"
