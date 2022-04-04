@@ -25,7 +25,7 @@ variable "personal_access_token" {
   default     = ""
 }
 
-variable "region" {
+variable "aws_region" {
   default = "us-east-2"
 }
 
