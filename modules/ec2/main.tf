@@ -70,7 +70,7 @@ resource "aws_instance" "selfhosted_runner" {
   vpc_security_group_ids      = [var.sg_priv_id]
 
   provisioner "file" {
-    source      = "script.sh"
+    source      = "./script.sh"
     destination = "/tmp/script.sh"
   }
   provisioner "remote-exec" {
