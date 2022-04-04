@@ -68,26 +68,8 @@ resource "aws_instance" "selfhosted_runner" {
   key_name                    = var.key_name
   subnet_id                   = var.vpc.private_subnets[1]
   vpc_security_group_ids      = [var.sg_priv_id]
-
-  provisioner "file" {
-    source      = "./script.sh"
-    destination = "/tmp/script.sh"
-  }
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/script.sh",
-      "sudo sed -i -e 's/\r$//' /tmp/script.sh",  # Remove the spurious CR characters.
-      "sudo /tmp/script.sh",
-    ]
-  }
-  connection {
-    host        = coalesce(self.public_ip, self.private_ip)
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = file("${var.key_name}.pem")  
-  }
               
- 
+  user_data = templatefile("scripts/createsvc.sh", {personal_access_token = var.personal_access_token})
   tags = {
     Name = "${var.namespace}-SELFHOSTED-RUNNER"
   }
