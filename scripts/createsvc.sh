@@ -83,7 +83,7 @@ echo
 echo "Downloading latest runner ..."
 
 latest_version_label=$(curl -s -X GET 'https://api.github.com/repos/actions/runner/releases/latest' | jq -r '.tag_name')
-latest_version=$(echo ${latest_version_label:1})
+latest_version=$(echo "$${latest_version_label:1"})
 runner_file="actions-runner-${runner_plat}-x64-${latest_version}.tar.gz"
 
 if [ -f "${runner_file}" ]; then
