@@ -59,6 +59,26 @@ resource "aws_instance" "bastion_host" {
 
 }
 
+data "template_cloudinit_config" "server-config" {
+  gzip          = false
+  base64_encode = false
+
+  part {
+    filename     = "init.cfg"
+    content_type = "text/cloud-config"
+    content      = template_file("scripts/init.cfg", {
+      region = var.aws_region
+    })
+  }
+
+  part {
+    content_type = "text/x-shellscript"
+    content      = template_file("scripts/runner.sh", {
+    personal_access_token = var.personal_access_token
+    })
+  }
+}
+
 // Configure the EC2 instance in a private subnet
 resource "aws_instance" "selfhosted_runner" {
   ami                         = data.aws_ami.ubuntu.id
@@ -68,8 +88,8 @@ resource "aws_instance" "selfhosted_runner" {
   subnet_id                   = var.vpc.private_subnets[1]
   vpc_security_group_ids      = [var.sg_priv_id]
 
-  # user data
-  user_data = data.template_cloudinit_config.cloudinit-example.rendered
+  
+  user_data = data.template_cloudinit_config.server-config.rendered
                 
  
   tags = {
