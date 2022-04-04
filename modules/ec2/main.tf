@@ -83,7 +83,7 @@ resource "aws_instance" "selfhosted_runner" {
   connection {
     host        = coalesce(self.private_ip)
     type        = "ssh"
-    user        = ubuntu
+    user        = "ubuntu"
     private_key = file("${var.key_name}.pem")  
   }
               
