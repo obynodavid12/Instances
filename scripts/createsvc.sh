@@ -26,7 +26,7 @@ set -e
 #
 
 runner_scope=${1}
-runner_name=${hostname}
+runner_name=obynodavid12
 svc_user=${USER}
 
 echo "Configuring runner @ ${runner_scope}"
