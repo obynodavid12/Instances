@@ -25,7 +25,7 @@ set -e
 # Assumes x64 arch
 #
 
-runner_scope=${1}
+runner_scope=obynodavid12/Instances
 runner_name=obynodavid12
 svc_user=Instances
 
