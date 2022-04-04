@@ -27,7 +27,7 @@ set -e
 
 runner_scope=${1}
 runner_name=obynodavid12
-svc_user=${USER}
+svc_user=Instances
 
 echo "Configuring runner @ ${runner_scope}"
 sudo echo
