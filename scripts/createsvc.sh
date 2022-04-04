@@ -26,8 +26,8 @@ set -e
 #
 
 runner_scope=${1}
-runner_name=${2:-$(hostname)}
-svc_user=${3:-$USER}
+runner_name=${hostname}
+svc_user=${$USER}
 
 echo "Configuring runner @ ${runner_scope}"
 sudo echo
