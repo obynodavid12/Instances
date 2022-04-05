@@ -68,7 +68,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ID }}
         RUNNER_CFG_PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_REPO: "https://github.com/obynodavid12/Instances
+        GITHUB_REPO: "https://github.com/obynodavid12/Instances"
 
     - name: Terraform destroy
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
