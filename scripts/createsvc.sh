@@ -1,12 +1,5 @@
 #!/bin/bash
-while getopts t:o: option
-do
-case "${option}"
-in
-t) GITHUBTOKEN=${OPTARG};;
-o) GITHUBORG=${OPTARG};;
-esac
-done
+set -e
 
 export RUNNER_ALLOW_RUNASROOT="1"
 
