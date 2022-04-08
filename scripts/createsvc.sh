@@ -60,8 +60,8 @@ shift "$((OPTIND - 1))"
 if ! "$flags_found"; then
     runner_scope=${1}
     ghe_hostname=${2}
-    runner_name=${3:-$(hostname)}
-    svc_user=${4:-$USER}
+    runner_name=${runner_name:-$(hostname)}
+    svc_user=${svc_user:-$USER}
     labels=${5}
     runner_group=${6}
 fi
