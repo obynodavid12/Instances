@@ -40,7 +40,7 @@ resource "aws_security_group" "allow_ssh_pub" {
   }
 }
 
-// SG to onlly allow SSH connections from VPC public subnets
+// SG to only allow SSH connections from VPC public subnets
 resource "aws_security_group" "allow_ssh_priv" {
   name        = "${var.namespace}-allow_ssh_priv"
   description = "Allow SSH inbound traffic"

@@ -19,7 +19,7 @@ variable "sg_priv_id" {
 }
 
 
-variable "personal_access_token" {
+variable "RUNNER_CFG_PAT" {
   description = "personal token to authenticate with the GitHub Repo"
   type        = string
   default     = ""
