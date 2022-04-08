@@ -10,11 +10,11 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ID }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
-      RUNNER_CFG_PAT: ${{ secrets.RUNNER_CFG_PAT }} 
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }} 
+      
  
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -39,8 +39,8 @@ jobs:
       run: | 
         terraform init
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ID }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}
     
     - name: Terraform validate
       run: |
@@ -64,9 +64,9 @@ jobs:
       run: |
         terraform apply -auto-approve  
       env:
-        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ID }}
-        RUNNER_CFG_PAT: ${{ secrets.RUNNER_CFG_PAT }}
+        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_ID }}
+        RUNNER_CFG_PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_REPO: "https://github.com/obynodavid12/Instances"
 
