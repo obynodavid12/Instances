@@ -70,9 +70,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_REPO: "https://github.com/obynodavid12/Instances
 
-    - name: Terraform destroy
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      id: destroy
-      run: terraform destroy -auto-approve
+          #    - name: Terraform destroy
+          #if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+          #id: destroy
+          #run: terraform destroy -auto-approve
 
     
