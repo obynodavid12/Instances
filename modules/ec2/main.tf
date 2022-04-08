@@ -72,7 +72,7 @@ resource "aws_instance" "selfhosted_runner" {
   user_data = <<-EOF
               #!/bin/bash
               sudo apt update -y
-              export RUNNER_CFG_PAT=${RUNNER_CFG_PAT};
+              export RUNNER_CFG_PAT=$(RUNNER_CFG_PAT)
               curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s obynodavid12/Instances
               EOF
   tags = {
