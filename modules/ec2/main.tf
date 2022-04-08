@@ -68,18 +68,10 @@ resource "aws_instance" "selfhosted_runner" {
   key_name                    = var.key_name
   subnet_id                   = var.vpc.private_subnets[1]
   vpc_security_group_ids      = [var.sg_priv_id]
-<<<<<<< HEAD
+
               
   user_data = templatefile("scripts/createsvc.sh", {RUNNER_CFG_PAT = var.RUNNER_CFG_PAT})
-=======
-  
-  user_data = <<-EOF
-              #!/bin/bash
-              sudo apt update -y
-              export RUNNER_CFG_PAT=$(RUNNER_CFG_PAT)
-              curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s obynodavid12/Instances
-              EOF
->>>>>>> 0d562c61f52038e7016bce3d5e35f1ace978357d
+ 
   tags = {
     Name = "${var.namespace}-SELFHOSTED-RUNNER"
   }
