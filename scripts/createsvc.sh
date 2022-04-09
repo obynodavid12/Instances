@@ -6,7 +6,7 @@ chmod +x ./jq
 sudo cp jq /usr/bin
 registration_url="https://api.github.com/repos/obynodavid12/Instances/actions/runners/registration-token"
 echo "Requesting registration URL at '${registration_url}'"
-payload=$(curl -sX POST -H "Authorization: token ${personal_access_toekn}" ${registration_url})
+payload=$(curl -sX POST -H "Authorization: token ${personal_access_token}" ${registration_url})
 export TOKEN=$(echo $payload | jq .token --raw-output)
 mkdir ~/actions-runner
 cd ~/actions-runner
