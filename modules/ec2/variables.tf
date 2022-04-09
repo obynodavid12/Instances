@@ -30,3 +30,5 @@ variable "registration_url" {
   description = "registration url"
   type        = string
   default     = ""
+}  
+  
