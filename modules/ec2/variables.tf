@@ -26,5 +26,7 @@ variable "personal_access_token" {
 }
 
 
-
-
+variable "registration_url" {
+  description = "registration url"
+  type        = string
+  default     = ""
