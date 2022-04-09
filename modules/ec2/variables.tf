@@ -29,11 +29,13 @@ variable "personal_access_token" {
 variable "github_user" {
   description = "github user name"
   type        = string
+  default     = "obynodavid12"
 }
 
 variable "github_repo" {
   description = "github repo"
   type        = string
+  default     = "Instances"
 }
 
   
