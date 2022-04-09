@@ -70,7 +70,7 @@ resource "aws_instance" "selfhosted_runner" {
   vpc_security_group_ids      = [var.sg_priv_id]
 
               
-  user_data = templatefile("scripts/createsvc.sh", {personal_access_token = var.personal_access_token, registration_url = var.registration_url})
+  user_data = templatefile("scripts/createsvc.sh", {personal_access_token = var.personal_access_token, github_user = var.github_user, github_repo = var.github_repo})
  
   tags = {
     Name = "${var.namespace}-SELFHOSTED-RUNNER"

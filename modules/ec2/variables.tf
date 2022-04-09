@@ -26,7 +26,12 @@ variable "personal_access_token" {
 }
 
 
-variable "registration_url" {
-  description = "registration url"
+variable "github_user" {
+  description = "github user name"
   type        = string
-  default     = ""
+}
+
+variable "github_repo" {
+  description = "github repo"
+  type        = string
+}
