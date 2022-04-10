@@ -21,7 +21,7 @@ chown -R ubuntu /home/ubuntu/actions-runner
 
 token=$(curl -s -XPOST -H "authorization: token $personal_access_token" https://api.github.com/repos/$github_user/$github_repo/actions/runners/registration-token | jq -r .token)
 sudo -i -u ubuntu bash << EOF
-/home/ubuntu/actions-runner/config.sh --url https://github.com/obynodavid12/$github_user --token $token --name gh-g2-runner-"${hostname}" --work /home/ubuntu/actions-runner --unattended
+/home/ubuntu/actions-runner/config.sh --url https://github.com/obynodavid12/$github_user --token $token --name gh-g2-runner-"self-hosted" --work /home/ubuntu/actions-runner --unattended
 EOF
 ./svc.sh install
 ./svc.sh start
