@@ -18,3 +18,5 @@ variable "personal_access_token" {
 variable "github_user" {}
 
 variable "github_repo" {}
+
+variable "registration_url" {}

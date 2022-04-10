@@ -32,11 +32,11 @@ variable "github_user" {
   default     = "https://github.com/obynodavid12"
 }
 
-variable "github_repo" {
-  description = "github repo"
-  type        = string
-  default     = "https://github.com/obynodavid12/Instances"
-}
+variable "github_repo" {}
+
+variable "github_user" {}
+
+variable "registration_url" {}
 
   
   

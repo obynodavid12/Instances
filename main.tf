@@ -43,6 +43,7 @@ module "ec2" {
   namespace  = var.namespace
   github_repo = var.github_repo
   github_user = var.github_user
+  registration_url = var.registration_url
   vpc        = module.networking.vpc
   sg_pub_id  = module.networking.sg_pub_id
   sg_priv_id = module.networking.sg_priv_id
