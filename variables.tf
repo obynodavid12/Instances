@@ -12,4 +12,9 @@ variable "region" {
 
 variable "personal_access_token" {
   default = ""
+
 }
+
+variable "github_user" {}
+
+variable "github_repo" {}
