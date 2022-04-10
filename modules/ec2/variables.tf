@@ -33,7 +33,7 @@ variable "github_user" {
 }
 
 variable "github_repo" {
-  description = Repo name
+  description = "Repo name"
   type  = string
   default  = "Instances"
 }
