@@ -9,15 +9,14 @@ chmod +x ./jq
 sudo cp jq /usr/bin
 # Get the latest runner version
 VERSION_FULL=$(curl -s https://api.github.com/repos/actions/runner/releases/latest | jq -r .tag_name)
-RUNNER_VERSION="2.289.2"
 
 
 # Create a folder
 mkdir /home/ubuntu/actions-runner && cd /home/ubuntu/actions-runner || exit
 # Download the latest runner package
-curl -o actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
+curl -o actions-runner-linux-x64-2.289.2.tar.gz -L https://github.com/actions/runner/releases/download/v2.289.2/actions-runner-linux-x64-2.289.2.tar.gz
 # Extract the installer
-tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
+tar xzf ./actions-runner-linux-x64-2.289.2.tar.gz
 chown -R ubuntu /home/ubuntu/actions-runner
 
 token=$(curl -s -XPOST -H "authorization: token $personal_access_token" https://api.github.com/repos/$github_user/$github_repo/actions/runners/registration-token | jq -r .token)
