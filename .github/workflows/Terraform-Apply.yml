@@ -27,7 +27,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Get GitHub organization or user
- i    run: echo 'ORG='$(dirname ${GITHUB_REPOSITORY}) >> $GITHUB_ENV
+      run: echo 'USER='$(dirname ${GITHUB_REPOSITORY}) >> $GITHUB_ENV
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
