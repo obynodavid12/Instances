@@ -28,4 +28,3 @@ variable "github_repo" {
 }
 
 
-variable "registration_url" {}
