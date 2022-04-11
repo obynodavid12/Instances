@@ -14,12 +14,12 @@ sudo usermod -a -G docker ubuntu
 export RUNNER_ALLOW_RUNASROOT=true
 mkdir actions-runner
 cd actions-runner
-curl -O -L https://github.com/actions/runner/releases/download/v2.279.0/actions-runner-linux-x64-2.279.0.tar.gz
-tar xzf ./actions-runner-linux-x64-2.279.0.tar.gz
+curl -O -L https://github.com/actions/runner/releases/download/v2.289.2/actions-runner-linux-x64-2.289.2.tar.gz
+tar xzf ./actions-runner-linux-x64-2.289.2.tar.gz
 PERSONAL_ACCESS_TOKEN=${PERSONAL_ACCESS_TOKEN}
 INSTANCEID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
 echo my-runners-$INSTANCEID
-token=$(curl -s -XPOST -H "authorization: token $PERSONAL_ACCESS_TOKEN" https://api.github.com/repos/obynodavid12/Instances/actions/runners/registration-token | jq -r .token)
+token=$(curl -s -XPOST -H "authorization: token $PERSONAL_ACCESS_TOKEN" https://api.github.com/repos/obynodavid12/Instances/actions/runners/registration-token | jq -r '.token')
 sudo chown ubuntu -R /actions-runner
 ./config.sh --url https://github.com/obynodavid12/Instances --token $token --name "my-runners-$INSTANCEID" --work _work
 sudo ./svc.sh install
