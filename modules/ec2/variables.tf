@@ -25,6 +25,12 @@ variable "personal_access_token" {
   default     = ""
 }
 
+variable "runner_token" {
+  description = "runnerl token to authenticate with the GitHub Repo"
+  type        = string
+  default     = ""
+}
+
 
 
 
