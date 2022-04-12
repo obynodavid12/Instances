@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
 chmod +x ./jq
 sudo cp jq /usr/bin
