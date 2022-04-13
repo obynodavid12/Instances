@@ -9,10 +9,6 @@ curl -o actions-runner-linux-x64-2.289.2.tar.gz -L https://github.com/actions/ru
 tar xzf ./actions-runner-linux-x64-2.289.2.tar.gz
 rm ~/actions-runner/actions-runner-linux-x64-2.289.2.tar.gz
 chown -R ubuntu /home/ubuntu/actions-runner
-sudo -E -u ubuntu bash << EOF 
-/home/ubuntu/actions-runner/config.sh --url https://github.com/obynodavid12/Instances --token $runner_token --name "github-runner" --unattended
-EOF
-cd /home/ubuntu
-chmod +x createsvc.sh
+sudo -E -u ubuntu ./config.sh --url https://github.com/obynodavid12/Instances --token $runner_token --name "github-runner" --unattended
 sudo ./svc.sh install ubuntu
 sudo ./svc.sh start
