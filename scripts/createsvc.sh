@@ -11,7 +11,6 @@ tar xzf ./actions-runner-linux-x64-2.289.2.tar.gz
 RUNNER_TOKEN=$(curl -s -XPOST -H "authorization: token $PERSONAL_ACCESS_TOKEN" https://api.github.com/repos/obynodavid12/Instances/actions/runners/registration-token | jq -r .token)
 sudo chown ubuntu -R /actions-runner
 ./config.sh --url https://github.com/obynodavid12/Instances --token $RUNNER_TOKEN --name "my-runner-$(hostname)" --runasservice --unattended --replace 
-sudo ./svc.sh install
-sudo ./svc.sh start
-echo "Started"
-sudo chown ubuntu -R /actions-runner
+./run.sh "$*" &
+
+wait $!
