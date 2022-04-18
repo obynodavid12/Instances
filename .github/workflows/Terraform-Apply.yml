@@ -75,10 +75,10 @@ jobs:
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_ID }}
         
 
-    - name: Terraform destroy
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      id: destroy
-      run: terraform destroy -auto-approve
+#     - name: Terraform destroy
+#       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+#       id: destroy
+#       run: terraform destroy -auto-approve
 
     
 
