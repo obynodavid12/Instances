@@ -29,11 +29,6 @@ jobs:
     - name: Get GitHub organization or user
       run: echo 'USER='$(dirname ${GITHUB_REPOSITORY}) >> $GITHUB_ENV
       
-#     - name: Get the artifacts path from repo
-#       run: |
-#         curl --request POST 'https://api.github.com/repos/obynodavid12/Instances/actions/runners/registration-token' --header "Authorization: token ${personal_access_token}" > output.json
-#         runner_token="\$(jq -r '.token' output.json)" >> $GITHUB_ENV
-#         echo "${{ env.runner_token }}"
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
@@ -75,10 +70,10 @@ jobs:
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_ID }}
         
 
-    - name: Terraform destroy
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      id: destroy
-      run: terraform destroy -auto-approve
+#     - name: Terraform destroy
+#       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+#       id: destroy
+#       run: terraform destroy -auto-approve
 
     
 
