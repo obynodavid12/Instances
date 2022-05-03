@@ -60,7 +60,7 @@ shift "$((OPTIND - 1))"
 if ! "$flags_found"; then
     runner_scope=${1}
     ghe_hostname=${2}
-    runner_name=${3:-$(hostname)}
+    runner_name=${3:-$(ubuntu)}
     svc_user=${4:-$USER}
     labels=${5}
     runner_group=${6}
