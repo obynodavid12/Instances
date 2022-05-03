@@ -95,7 +95,7 @@ jobs:
         value=`cat tfoutput.json`
         echo The result is $value
         echo "INSTANCE_IP=`jq -r '.private_ip.value' tfoutput.json`" >> $GITHUB_ENV
-        echo "BASTION_INSTANCE_IP=`jq -r '.public_ip.value' tfoutput.json`" >> $GITHUB_ENV
+        
     
     - name: copy file via ssh key
       uses: appleboy/scp-action@master
@@ -103,7 +103,7 @@ jobs:
         host: ${{ env.INSTANCE_IP }}
         username: ${{ secrets.AWS_EC2_USERNAME }}
         key: ${{ secrets.AWS_EC2_PRIVATE_KEY }}
-        proxy_host: ${{ env.BASTION_INSTANCE_IP }}
+        proxy_host: ${{ secret.AWS_PROXY_HOST }}
         proxy_username: ${{ secrets.AWS_EC2_USERNAME }}
         proxy_key: ${{ secrets.AWS_EC2_PROXY_PRIVATE_KEY }}
         rm: true
@@ -114,10 +114,10 @@ jobs:
     - name: executing remote ssh commands
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ env.PRIVATE_INSTANCE_IP }}
+        host: ${{ env.INSTANCE_IP }}
         username: ${{ secrets.AWS_EC2_USERNAME }}
         key: ${{ secrets.AWS_EC2_PRIVATE_KEY }}
-        proxy_host: ${{ env.BASTION_INSTANCE_IP }}
+        proxy_host: ${{ secret.AWS_PROXY_HOST }}
         proxy_username: ${{ secrets.AWS_EC2_USERNAME }}
         proxy_key: ${{ secrets.AWS_EC2_PROXY_PRIVATE_KEY }}
         command_timeout: 30m
