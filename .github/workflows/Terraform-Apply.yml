@@ -103,7 +103,7 @@ jobs:
         host: ${{ env.INSTANCE_IP }}
         username: ${{ secrets.AWS_EC2_USERNAME }}
         key: ${{ secrets.AWS_EC2_PRIVATE_KEY }}
-        proxy_host: ${{ secret.AWS_PROXY_HOST }}
+        proxy_host: ${{ secrets.AWS_PROXY_HOST }}
         proxy_username: ${{ secrets.AWS_EC2_USERNAME }}
         proxy_key: ${{ secrets.AWS_EC2_PROXY_PRIVATE_KEY }}
         rm: true
@@ -117,7 +117,7 @@ jobs:
         host: ${{ env.INSTANCE_IP }}
         username: ${{ secrets.AWS_EC2_USERNAME }}
         key: ${{ secrets.AWS_EC2_PRIVATE_KEY }}
-        proxy_host: ${{ secret.AWS_PROXY_HOST }}
+        proxy_host: ${{ secrets.AWS_PROXY_HOST }}
         proxy_username: ${{ secrets.AWS_EC2_USERNAME }}
         proxy_key: ${{ secrets.AWS_EC2_PROXY_PRIVATE_KEY }}
         command_timeout: 30m
