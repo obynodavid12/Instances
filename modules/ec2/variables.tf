@@ -25,11 +25,11 @@ variable "RUNNER_CFG_PAT" {
   default     = ""
 }
 
-# variable "runner_name" {
-#   description = "hostname for the runner"
-#   type        = string
-#   default     = "ec2-user"
-# }
+variable "runner_name" {
+  description = "hostname for the runner"
+  type        = string
+  default     = "ec2-user"
+}
 
 
 
