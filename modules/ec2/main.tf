@@ -69,8 +69,16 @@ resource "aws_instance" "selfhosted_runner" {
   subnet_id                   = var.vpc.private_subnets[1]
   vpc_security_group_ids      = [var.sg_priv_id]
 
-              
-  user_data = templatefile("scripts/createsvc.sh", {RUNNER_CFG_PAT = var.RUNNER_CFG_PAT, runner_name = var.runner_name}) 
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt-get update -y
+              wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+              chmod +x ./jq
+              sudo mv jq /usr/bin
+              export RUNNER_CFG_PAT="$RUNNER_CFG_PAT"
+              curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s -- -s obynodavid12/Instances -n gbrunner -l gpu,x64,linux
+              EOF        
+  
   tags = {
     Name = "${var.namespace}-SELFHOSTED-RUNNER"
   }
@@ -78,3 +86,4 @@ resource "aws_instance" "selfhosted_runner" {
 
 
 
+#user_data = templatefile("scripts/createsvc.sh", {RUNNER_CFG_PAT = var.RUNNER_CFG_PAT, runner_name = var.runner_name}) 
