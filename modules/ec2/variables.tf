@@ -25,10 +25,10 @@ variable "RUNNER_CFG_PAT" {
   default     = ""
 }
 
-# variable "RUNNER_TOKEN" {
-#   description = "runner token to authenticate with the GitHub Repo"
+# variable "runner_name" {
+#   description = "hostname for the runner"
 #   type        = string
-#   default     = ""
+#   default     = "ec2-user"
 # }
 
 
