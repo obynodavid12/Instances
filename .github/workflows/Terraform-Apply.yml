@@ -28,7 +28,7 @@ jobs:
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
         #cli_config_credentials_hostname: ${{ secrets.TF_HOSTNAME}}
-        #terraform_wrapper: false
+        terraform_wrapper: false
 
     
     - name: Terraform Format
