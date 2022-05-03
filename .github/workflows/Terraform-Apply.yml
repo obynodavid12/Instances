@@ -94,7 +94,7 @@ jobs:
       run: |
         value=`cat tfoutput.json`
         echo The result is $value
-        echo "INSTANCE_IP=`jq -r '.private_ip.value' tfoutput.json`" >> $GITHUB_ENV
+        echo "INSTANCE_IP=`jq -r '.private_ip.value, public_ip.value' tfoutput.json`" >> $GITHUB_ENV
         
     
     - name: copy file via ssh key
