@@ -108,7 +108,7 @@ jobs:
         proxy_key: ${{ secrets.AWS_EC2_PROXY_PRIVATE_KEY }}
         rm: true
         strip_components: 1
-        source: "scripts"
+        source: "."
         target: "scripts"          
             
     
